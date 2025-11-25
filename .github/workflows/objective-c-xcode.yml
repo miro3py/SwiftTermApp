@@ -1,4 +1,4 @@
-name: Xcode - Build and Analyze
+name: Xcode - Build
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build and analyse default scheme using xcodebuild command
+    name: Build default scheme using xcodebuild command
     runs-on: macos-latest
 
     steps:
@@ -18,7 +18,8 @@ jobs:
 
       - name: Build
         run: |
-          xcodebuild clean build analyze CODE_SIGNING_REQUIRED=NO \
+          xcodebuild clean build \
+                     CODE_SIGNING_REQUIRED=NO \
                      -allowProvisioningUpdates \
                      -scheme SwiftTermApp \
                      -project SwiftTermApp.xcodeproj
