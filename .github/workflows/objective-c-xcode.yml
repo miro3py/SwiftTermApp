@@ -5,6 +5,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -14,7 +15,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Build
         run: |
-          xcodebuild clean build analyze CODE_SIGNING_REQUIRED=NO -allowProvisioningUpdates -scheme SwiftTermApp -project SwiftTermApp.xcodeproj  | xcpretty && exit ${PIPESTATUS[0]}
-
+          xcodebuild clean build analyze CODE_SIGNING_REQUIRED=NO \
+                     -allowProvisioningUpdates \
+                     -scheme SwiftTermApp \
+                     -project SwiftTermApp.xcodeproj
